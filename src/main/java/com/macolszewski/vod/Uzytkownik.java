@@ -17,9 +17,9 @@ public class Uzytkownik {
         this.rola = Rola.UZYTKOWNIK;
         while (true) {
             System.out.println("Podaj hasło: ");
-            String haslo1 = Menu.input.nextLine();
+            String haslo1 = Menu.input.next();
             System.out.println("Powtórz hasło: ");
-            String haslo2 = Menu.input.nextLine();
+            String haslo2 = Menu.input.next();
             if (haslo1.equals(haslo2)) {
                 this.haslo = haslo1;
                 listaUzytkownikow.add(this);
@@ -30,12 +30,17 @@ public class Uzytkownik {
         }
     }
 
-    static void logowanie(String login, String haslo) {
+    static void logowanie() {
+        System.out.println("** LOGOWANIE **");
+        System.out.print("Podaj nazwę użytkownika: ");
+        String login = Menu.input.next();
+        System.out.print("Podaj hasło: ");
+        String haslo = Menu.input.next();
         for (Uzytkownik user : listaUzytkownikow) {
             if (user.getLogin().equals(login)) {
-                if (user.getHaslo().equals(haslo)){
-                    listaUzytkownikowZalogowanych.add(user);
-                    zalogowany=user;
+                if (user.getHaslo().equals(haslo)) {
+                    Uzytkownik.listaUzytkownikowZalogowanych.add(user);
+                    Uzytkownik.zalogowany = user;
                 }
             }
         }

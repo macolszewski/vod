@@ -11,7 +11,7 @@ public class App
         Uzytkownik Jarek = new Uzytkownik();
         System.out.println(Uzytkownik.listaUzytkownikow);
         Menu menu = new Menu();
-
         menu.showMainMenu();
+        menu.showLoggedMenu();
     }
 }
