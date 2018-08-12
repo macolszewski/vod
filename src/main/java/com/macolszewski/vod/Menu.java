@@ -3,7 +3,7 @@ package com.macolszewski.vod;
 import java.util.Scanner;
 
 public class Menu {
-    Scanner input = new Scanner(System.in);
+    static Scanner input = new Scanner(System.in);
 
     public void login(){
         System.out.println("Podaj nazwę użytkownika");
