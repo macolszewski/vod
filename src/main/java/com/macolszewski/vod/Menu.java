@@ -10,7 +10,7 @@ public class Menu {
         String login = input.nextLine();
         System.out.println("Podaj hasło");
         String pass = input.nextLine();
-        //metoda logowanie (login, pass)
+        Uzytkownik.logowanie(login, pass);
         //metoda wyszukuje po loginie, sprawdza hasło i sprawdza poziom uprawnień
     }
 
@@ -19,6 +19,7 @@ public class Menu {
 
 
     public void showMainMenu() {
+        
         int handler = 1;
         while (handler == 1) {
 
