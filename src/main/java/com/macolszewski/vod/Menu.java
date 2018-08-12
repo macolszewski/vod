@@ -26,11 +26,27 @@ public class Menu {
                     handler=0;
                     break;
                 case 3:
+                    Uzytkownik nowyUzytkownik = new Uzytkownik();
                     break;
                 case 4:
                     handler=0;
                     break;
             }
+        }
+    }
+
+    public void menuAdministratora(){
+        System.out.println("MENU Administratora");
+        System.out.println("1. Lista użytkowników");
+        System.out.println("2. ...");
+        int adminChoice = input.nextInt();
+
+        switch (adminChoice){
+            case 1:
+                System.out.println(Uzytkownik.listaUzytkownikow);
+                break;
+            case 2:
+                break;
         }
     }
 
@@ -47,6 +63,9 @@ public class Menu {
 
     public void showLoggedMenu() {
         if (Uzytkownik.listaUzytkownikowZalogowanych.contains(Uzytkownik.zalogowany)) {
+            if (Uzytkownik.zalogowany.getRola().equals(Rola.ADMINISTRATOR)){
+                menuAdministratora();
+            }
 
             int handler = 1;
             while (handler == 1) {

@@ -30,8 +30,20 @@ public class Uzytkownik {
         }
     }
 
+    public Uzytkownik(String n) {
+        this.login = "admin";
+        this.rola = Rola.ADMINISTRATOR;
+        this.haslo = "admin";
+        listaUzytkownikow.add(this);
+    }
+
+    public Rola getRola() {
+        return rola;
+    }
+
     static void logowanie() {
         System.out.println("** LOGOWANIE **");
+
         System.out.print("Podaj nazwę użytkownika: ");
         String login = Menu.input.next();
         System.out.print("Podaj hasło: ");
@@ -46,6 +58,7 @@ public class Uzytkownik {
         }
 
     }
+
 
     public String getLogin() {
         return login;
