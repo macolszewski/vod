@@ -13,6 +13,7 @@ public class Menu {
         if (Uzytkownik.listaUzytkownikowZalogowanych.contains(Uzytkownik.zalogowany)) {
             if (Uzytkownik.zalogowany.getRola().equals(Rola.ADMINISTRATOR)) {
                 adminMenu();
+                adminMenuNav();
             } else {
                 userMenu();
                 userMenuNav();
@@ -27,8 +28,7 @@ public class Menu {
      * Główne menu, które jest wyświetlane niezalogowanym użytkownikom.
      */
     public void mainMenu() {
-        System.out.println("============================================================================================");
-        System.out.println("** WYPOŻYCZALNIA FILMÓW - Vintage Heaven");
+        System.out.println("========================** WYPOŻYCZALNIA FILMÓW - Vintage Heaven **=========================");
         System.out.println("1. Lista filmów");
         System.out.println("2. Zaloguj");
         System.out.println("3. Utwórz konto");
@@ -51,8 +51,10 @@ public class Menu {
                     break;
                 case 2:
                     Uzytkownik.logowanie();
+                    menuValidator();
                     break;
                 case 3:
+//                    TODO: Przerobić tego konstruktora na metodę, która będzie tworzyła ten obiekt.
                     Uzytkownik nowyUzytkownik = new Uzytkownik();
                     break;
                 case 4:
@@ -66,7 +68,7 @@ public class Menu {
      * Metoda, która wyświetla menu wyboru listy filmów do wyświetlenia.
      */
     public void filmListMenu() {
-        System.out.println("============================================================================================");
+        System.out.println("========================** WYPOŻYCZALNIA FILMÓW - Vintage Heaven **=========================");
         System.out.println("1. Wyświetl wszystkie filmy");
         System.out.println("2. Wyświetl dramaty");
         System.out.println("3. Wyświetl komedie");
@@ -85,19 +87,19 @@ public class Menu {
 
             switch (filmListMenuChoice) {
                 case 1:
-                    System.out.println("Tu będą wyświetlały się wszystkie filmy.");
+                    System.out.println("Tu będą wyświetlały się wszystkie filmy."); // TODO: Stworzyć metodę wyświetlania wszystkich filmów.
                     filmListMenu();
                     break;
                 case 2:
-                    System.out.println("Tu będą wyświetlały się dramaty.");
+                    System.out.println("Tu będą wyświetlały się dramaty."); // TODO: Stworzyć metodę wyświetlania wszystkich dramatów.
                     filmListMenu();
                     break;
                 case 3:
-                    System.out.println("Tu będą wyświetlały się komedie.");
+                    System.out.println("Tu będą wyświetlały się komedie."); // TODO: Stworzyć metodę wyświetlania wszystkich komedii.
                     filmListMenu();
                     break;
                 case 4:
-                    System.out.println("Tu będą wyświetlały się horrory.");
+                    System.out.println("Tu będą wyświetlały się horrory."); // TODO: Stworzyć metodę wyświetlania wszystkich horrorów.
                     filmListMenu();
                     break;
                 case 5:
@@ -141,10 +143,12 @@ public class Menu {
 //                  TODO: Metoda, która będzie wyświetlała wszystkie filmy, które zalogowany użytkownik kiedykolwiek wypożyczył.
 //                  TODO: Najlepiej, żeby motoda wyświetlała najpierw wypożyczone aktualnie (nieoddane) filmy, a później filmy wypożyczone i oddane.
                     System.out.println("Tu będzie się pokazywała lista wypożyczonych filmów.");
+                    userMenu();
                     break;
                 case 4:
 //                  TODO: Metoda, która będzie wyświetlała kwotę do zapłacenia za aktualnie wypożyczone filmy oraz ewentualne kary.
                     System.out.println("Tu będzie się wyświetlała kwota do zapłacenia z podziałem na wypożyczone filmy i kary.");
+                    userMenu();
                     break;
                 case 5:
 //                  TODO: Dodać metodę do wylogowywania.
@@ -159,7 +163,7 @@ public class Menu {
      * Metoda pokazująca wybór w menu wyszukiwania filmów.
      */
     public void filmSearch() {
-        System.out.println("============================================================================================");
+        System.out.println("====================================|MENU Użytkownika|======================================");
         System.out.println("1. Wyszukaj po tytule");
         System.out.println("2. Wyszukaj po reżyserze");
         System.out.println("3. Wyszukaj po gatunku");
@@ -173,22 +177,26 @@ public class Menu {
      */
     public void filmSearchNav() {
         int filmSearchNav = 0;
-        while (filmSearchNav != 6) {
+        while (filmSearchNav != 5) {
             filmSearchNav = input.nextInt();
             switch (filmSearchNav) {
                 case 1:
-                    System.out.println("Metoda wyszukiwania po tytule");
+                    System.out.println("Metoda wyszukiwania po tytule"); // TODO: Stworzyć metodę wyszukiwania filmów po tytule.
+                    filmSearch();
+                    break;
+                case 2:
+                    System.out.println("Metoda wyszukiwania po reżyserze"); // TODO: Stworzyć metodę wyszukiwania filmów po reżyserze.
+                    filmSearch();
                     break;
                 case 3:
-                    System.out.println("Metoda wyszukiwania po reżyserze");
+                    System.out.println("Metoda wyszukiwania po gatunku"); // TODO: Stworzyć metodę wyszukiwania filmów po gatunku.
+                    filmSearch();
                     break;
                 case 4:
-                    System.out.println("Metoda wyszukiwania po gatunku");
+                    System.out.println("Metoda wyświetlania tylko dostępnych filmów"); //TODO: Stworzyć metodę wyświetlania tylko dostępnych filmów.
+                    filmSearch();
                     break;
                 case 5:
-                    System.out.println("Metoda wyświetlania tylko dostępnych filmów");
-                    break;
-                case 6:
                     menuValidator();
                     break;
             }
@@ -212,13 +220,14 @@ public class Menu {
     /**
      * Metoda nawigacji w menu administratora.
      */
-    public void adminMenuNav(){
+    public void adminMenuNav() {
         int adminMenuChoice = 0;
-        while (adminMenuChoice != 6){
+        while (adminMenuChoice != 6) {
             adminMenuChoice = input.nextInt();
-            switch (adminMenuChoice){
+            switch (adminMenuChoice) {
                 case 1:
-                    System.out.println("Wyświetla wszystkich użytkowników");
+                    System.out.println(Uzytkownik.listaUzytkownikow);
+                    adminMenu();
                     break;
                 case 2:
                     filmListMenu();
@@ -233,114 +242,84 @@ public class Menu {
                     arrearsMenuNav();
                     break;
                 case 5:
-                    incomeMenu();
-                    incomeMenuNav();
+                    System.out.println("Metoda wyświetlająca kwoty przychodów."); // TODO: Stworzyć metodę wyświetlania przychodów.
+                    adminMenu();
                     break;
                 case 6:
+                    System.out.println("Dodać metodę wylogowywania"); // TODO: Dodać metodę wylogowywania.
                     menuValidator();
                     break;
             }
         }
+    }
 
+    /**
+     * Metoda wyświetlająca menu wyboru podczas dodawania użytkowników lub filmów.
+     */
+    private void addMenu() {
+        System.out.println("===================================|MENU Administratora|====================================");
+        System.out.println("1. Dodaj użytkownika");
+        System.out.println("2. Dodaj film");
+        System.out.println("3. Wróć");
+        System.out.println("============================================================================================");
+    }
 
-        int adminChoice = input.nextInt();
-
-        switch (adminChoice) {
-            case 1:
-                System.out.println(Uzytkownik.listaUzytkownikow);
-                break;
-            case 2:
-                break;
+    /**
+     * Metoda służąca do nawigacji w menu dodawania użytkowników lub filmów.
+     */
+    private void addMenuNav() {
+        int addMenuChoice = 0;
+        while (addMenuChoice != 3){
+            addMenuChoice = input.nextInt();
+            switch (addMenuChoice){
+                case 1:
+                    System.out.println("Metoda dodawania nowego użytkownika"); // TODO: Stworzyć metodę dodawania nowego użytkownika przez administratora (można nadawać role).
+                    addMenu();
+                    break;
+                case 2:
+                    System.out.println("Metoda dodawania nowego filmu"); // TODO: Stworzyć metodę dodawania nowego filmu.
+                    addMenu();
+                    break;
+                case 3:
+                    menuValidator();
+                    break;
+            }
         }
     }
 
-//
-//    public void showLoggedMenu() {
-//        if (Uzytkownik.listaUzytkownikowZalogowanych.contains(Uzytkownik.zalogowany)) {
-//            if (Uzytkownik.zalogowany.getRola().equals(Rola.ADMINISTRATOR)) {
-//                adminMenu();
-//            }
-//
-//            int handler = 1;
-//            while (handler == 1) {
-//
-//                System.out.println("**MENU**");
-//                System.out.println("1. Lista filmów");
-//                System.out.println("2. Cennik");
-//                System.out.println("3. Historia wypożyczeń");
-//                System.out.println("4. Wypożycz film");
-//                System.out.println("5. Administrator");
-//                System.out.println("6. Wyjdź");
-//
-//                int choice = input.nextInt();
-//
-//                switch (choice) {
-//                    case 1:
-////                metodaListaFilmow();
-//                        break;
-//                    case 2:
-//
-//                        break;
-//                    case 3:
-////                    metodaHistoria();
-//                        break;
-//                    case 4:
-////                    metodaWypożyczFilm();
-//                        break;
-//                    case 5:
-//
-//                    case 6:
-//                        handler = 0;
-//                        input.close();
-//                        System.out.println("Do widzenia...");
-//                        break;
-//                }
-//            }
-//
-//        }
-//    }
-//
-//
-//    public void cennik() {
-//
-//    }
-//
-//    public void metodaListaFilmow() {
-//        int handler = 1;
-//        while (handler == 1) {
-//            System.out.println("1. Wyświetl filmy");
-//            System.out.println("2. Wyszukaj film");
-//            System.out.println("3. Wyjdź");
-//            int choice = input.nextInt();
-//
-//            switch (choice) {
-//                case 1:
-////                filmWszysktie():
-//                    break;
-//                case 2:
-//                    System.out.println("Podaj tytuł: ");
-//                    String title = input.next();
-////                filmWyszukaj(title);
-//                    break;
-//                case 3:
-//                    handler = 0;
-//                    break;
-//
-//
-//            }
-//        }
-//    }
-//
-//    public void wyswietlFilmy() {
-//        System.out.println("1. Wyświel wszystkie filmy.");
-////        for po enumach
-//
-//
-//    }
-//
-//    public void wyswietlHistorie() {
-//
-//    }
 
+    /**
+     * Metoda wyświetlająca dłużnikow, lub zalegających z oddaniem filmów.
+     */
+    private void arrearsMenu() {
+        System.out.println("===================================|MENU Administratora|====================================");
+        System.out.println("1. Pokaż dłużników");
+        System.out.println("2. Pokaż użytkowników, którzy nie oddali filmu");
+        System.out.println("3. Wróć");
+        System.out.println("============================================================================================");
+    }
+
+
+    /**
+     * Metoda nawigacji w menu dłużników
+     */
+    private void arrearsMenuNav() {
+        int arrearsMenuChoice = 0;
+        while (arrearsMenuChoice !=3){
+            arrearsMenuChoice = input.nextInt();
+            switch (arrearsMenuChoice){
+                case 1:
+                    System.out.println("Metoda wyświetlająca dłużników finansowych"); // TODO: Stworzyć metodę wyświetlania dłużników finansowych.
+                    arrearsMenu();
+                    break;
+                case 2:
+                    System.out.println("Metoda wyświetlająca klientów, którzy zalegają ze zwrotem filmów"); // TODO: Stworzyć metodę wyświetlania klientów, którzy nie oddali filmu
+                    arrearsMenu();
+                    break;
+                case 3:
+                    menuValidator();
+                    break;
+            }
+        }
+    }
 }
-
