@@ -8,11 +8,15 @@ public class App
 {
     public static void main( String[] args )
     {
-//        Uzytkownik Jarek = new Uzytkownik();
-        Uzytkownik admin = new Uzytkownik("a");
-        System.out.println(Uzytkownik.listaUzytkownikow);
+////        Uzytkownik Jarek = new Uzytkownik();
+        Uzytkownik admin = new Uzytkownik("admin", "admin", Rola.ADMINISTRATOR);
+        Uzytkownik user = new Uzytkownik("user", "user", Rola.UZYTKOWNIK);
+//        System.out.println(Uzytkownik.listaUzytkownikow);
         Menu menu = new Menu();
-        menu.showMainMenu();
-        menu.showLoggedMenu();
+        menu.mainMenu();
+        menu.mainMenuNav();
+//        menu.showLoggedMenu();
+
+
     }
 }
