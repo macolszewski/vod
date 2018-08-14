@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Menu {
     static Scanner input = new Scanner(System.in);
+    Film film = new Film();
 
     /**
      * Metoda, która sprawdza, czy użytkownik jest zalogowany i jakie ma uprawnienia, żeby wiedzieć,
@@ -87,20 +88,20 @@ public class Menu {
 
             switch (filmListMenuChoice) {
                 case 1:
-                    System.out.println("Tu będą wyświetlały się wszystkie filmy."); // TODO: Stworzyć metodę wyświetlania wszystkich filmów.
-                    filmListMenu();
+                    System.out.println("Lista wszystkich filmów: ");
+                    film.showAllFilmList();
                     break;
                 case 2:
-                    System.out.println("Tu będą wyświetlały się dramaty."); // TODO: Stworzyć metodę wyświetlania wszystkich dramatów.
-                    filmListMenu();
+                    System.out.println("Lista filmów z gatunku Drama: ");
+                    film.showDramaFilmList();
                     break;
                 case 3:
-                    System.out.println("Tu będą wyświetlały się komedie."); // TODO: Stworzyć metodę wyświetlania wszystkich komedii.
-                    filmListMenu();
+                    System.out.println("Lista filmów z gatunku Komedia: ");
+                    film.showComedyFilmList();
                     break;
                 case 4:
-                    System.out.println("Tu będą wyświetlały się horrory."); // TODO: Stworzyć metodę wyświetlania wszystkich horrorów.
-                    filmListMenu();
+                    System.out.println("Lista filmów z gatunku Horror: ");
+                    film.showHorrorFilmList();
                     break;
                 case 5:
                     menuValidator();
@@ -278,7 +279,7 @@ public class Menu {
                     break;
                 case 2:
                     System.out.println("Metoda dodawania nowego filmu"); // TODO: Stworzyć metodę dodawania nowego filmu.
-                    addMenu();
+                    film.addFilm();
                     break;
                 case 3:
                     menuValidator();
