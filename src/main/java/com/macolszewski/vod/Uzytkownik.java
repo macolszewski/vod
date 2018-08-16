@@ -50,6 +50,35 @@ public class Uzytkownik {
                 String haslo = haslo1;
                 new Uzytkownik(login, haslo, rola);
                 System.out.println("==* Gratulacje! Utworzyłeś nowe konto w Vintage Heaven *==");
+                break;
+            }
+            else {
+                System.out.println("Hasła się nie zgadzają.");
+            }
+        }
+    }
+
+    static void adminAddUser () {
+        System.out.println("Podaj login: ");
+        String login = Menu.input.next();
+        for (Uzytkownik user : listaUzytkownikow) {
+            if (user.getLogin().equals(login)) {
+                System.out.println("Login zajęty. Spróbuj z innym.");
+                adminAddUser();
+                return;
+            }
+        }
+        while (true) {
+            System.out.println("Podaj hasło: ");
+            String haslo1 = Menu.input.next();
+            System.out.println("Powtórz hasło: ");
+            String haslo2 = Menu.input.next();
+            if (haslo1.equals(haslo2)) {
+                String haslo = haslo1;
+                System.out.println("Podaj rolę: ");
+                Rola rola = Rola.valueOf(Menu.input.next());
+                new Uzytkownik(login, haslo, rola);
+                System.out.println("Utworzyłeś nowego " + rola+"A");
                 System.out.println(listaUzytkownikow);
                 break;
             }

@@ -273,8 +273,7 @@ public class Menu {
             addMenuChoice = input.nextInt();
             switch (addMenuChoice){
                 case 1:
-                    System.out.println("Metoda dodawania nowego użytkownika"); // TODO: Stworzyć metodę dodawania nowego użytkownika przez administratora (można nadawać role).
-                    addMenu();
+                    Uzytkownik.adminAddUser();
                     break;
                 case 2:
                     System.out.println("Metoda dodawania nowego filmu"); // TODO: Stworzyć metodę dodawania nowego filmu.
