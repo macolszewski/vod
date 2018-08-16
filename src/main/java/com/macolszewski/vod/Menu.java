@@ -55,8 +55,8 @@ public class Menu {
                     menuValidator();
                     break;
                 case 3:
-//                    TODO: Przerobić tego konstruktora na metodę, która będzie tworzyła ten obiekt.
-                    Uzytkownik nowyUzytkownik = new Uzytkownik();
+                    Uzytkownik.addUser();
+                    menuValidator();
                     break;
                 case 4:
                     System.out.println("Do widzenia. Zapraszamy ponownie.");
@@ -152,8 +152,7 @@ public class Menu {
                     userMenu();
                     break;
                 case 5:
-//                  TODO: Dodać metodę do wylogowywania.
-                    System.out.println("Tu będzie się wylogowywał");
+                    Uzytkownik.logoutUser();
                     menuValidator();
                     break;
             }
@@ -247,7 +246,7 @@ public class Menu {
                     adminMenu();
                     break;
                 case 6:
-                    System.out.println("Dodać metodę wylogowywania"); // TODO: Dodać metodę wylogowywania.
+                    Uzytkownik.logoutAdmin();
                     menuValidator();
                     break;
             }
