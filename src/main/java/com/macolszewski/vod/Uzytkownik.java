@@ -30,10 +30,10 @@ public class Uzytkownik {
         }
     }
 
-    public Uzytkownik(String n) {
-        this.login = "admin";
-        this.rola = Rola.ADMINISTRATOR;
-        this.haslo = "admin";
+    public Uzytkownik(String n, String p, Rola rola) {
+        this.login = n;
+        this.rola = rola;
+        this.haslo = p;
         listaUzytkownikow.add(this);
     }
 

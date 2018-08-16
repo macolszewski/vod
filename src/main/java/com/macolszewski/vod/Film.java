@@ -20,8 +20,8 @@ public class Film {
         this.dostepnosc = dostepnosc;
     }
 
-    public Film dodajFilm(){
+//    public Film dodajFilm(){
 //        TODO: Tu będzie metoda do dodawania filmów,gdz
-        return new Film();
-    }
+//        return new Film();
+//    }
 }
