@@ -74,7 +74,7 @@ public class Film {
                     addFilm();
                     break;
                 case 2:
-                    Menu.menuValidator(); // Tutaj dodałem metodę menuValidator. To musi się jakiś fachowiec wypowiedzieć, czy to nie będzie robiło jakiego memory leaka. Jeśli tak, to trzeba dodać jakiś sposób w validatorze żeby zerował pętle while.
+                    Menu.menuValidator();
                     break;
             }
         }
@@ -83,28 +83,56 @@ public class Film {
      * Metoda do wyświetlenia wszystkich filmów.
      * */
     static void showAllFilmList() {
-        System.out.println(filmList);
+        for (Film film : filmList) {
+            System.out.println(film);
+        }
+        Menu.filmListMenuNav();
+        Menu.filmListMenuNav();
     }
 
+    public GatunekFilmu getGatunek() {
+        return gatunek;
+    }
+    
     /*
-    * Metoda do wyświetlenie filmów z gatunku Drama
+    * Metoda do wyświetlenie filmów z gatunku DRAMAT.
     * */
     static void showDramaFilmList(){
-
-        }
-
+        GatunekFilmu [] gatunek = GatunekFilmu.values();
+        for(Film film : filmList){
+            if (film.getGatunek().equals(GatunekFilmu.DRAMAT)){
+                System.out.println(film);
+                }
+            }
+        Menu.filmListMenu();
+        Menu.filmListMenuNav();
+    }
 
     /*
-     * Metoda do wyświetlenie filmów z gatunku Comedy
+     * Metoda do wyświetlenie filmów z gatunku KOMEDIA.
      * */
     static void showComedyFilmList(){
-        System.out.println(filmList);
+        GatunekFilmu [] gatunek = GatunekFilmu.values();
+        for(Film film : filmList){
+            if (film.getGatunek().equals(GatunekFilmu.KOMEDIA)){
+                System.out.println(film);
+            }
+        }
+        Menu.filmListMenu();
+        Menu.filmListMenuNav();
     }
     /*
-     * Metoda do wyświetlenie filmów z gatunku Horror
+     * Metoda do wyświetlenie filmów z gatunku HORROR.
      * */
     static void showHorrorFilmList(){
-        System.out.println(filmList);
+        GatunekFilmu [] gatunek = GatunekFilmu.values();
+        for(Film film : filmList){
+            if (film.getGatunek().equals(GatunekFilmu.HORROR)){
+                System.out.println(film);
+            }
+        }
+        Menu.filmListMenu();
+        Menu.filmListMenuNav();
     }
 
     /*
