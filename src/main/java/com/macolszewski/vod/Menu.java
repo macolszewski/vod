@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Menu {
     static Scanner input = new Scanner(System.in);
-    Film film = new Film();
 
     /**
      * Metoda, która sprawdza, czy użytkownik jest zalogowany i jakie ma uprawnienia, żeby wiedzieć,
@@ -89,19 +88,19 @@ public class Menu {
             switch (filmListMenuChoice) {
                 case 1:
                     System.out.println("Lista wszystkich filmów: ");
-                    film.showAllFilmList();
+                    Film.showAllFilmList();
                     break;
                 case 2:
                     System.out.println("Lista filmów z gatunku Drama: ");
-                    film.showDramaFilmList();
+                    Film.showDramaFilmList();
                     break;
                 case 3:
                     System.out.println("Lista filmów z gatunku Komedia: ");
-                    film.showComedyFilmList();
+                    Film.showComedyFilmList();
                     break;
                 case 4:
                     System.out.println("Lista filmów z gatunku Horror: ");
-                    film.showHorrorFilmList();
+                    Film.showHorrorFilmList();
                     break;
                 case 5:
                     menuValidator();
@@ -277,7 +276,9 @@ public class Menu {
                     break;
                 case 2:
                     System.out.println("Metoda dodawania nowego filmu"); // TODO: Stworzyć metodę dodawania nowego filmu.
-                    film.addFilm();
+                    Film.addFilm();
+                    addMenu();
+                    adminMenuNav();
                     break;
                 case 3:
                     menuValidator();
