@@ -9,7 +9,7 @@ public class Menu {
      * Metoda, która sprawdza, czy użytkownik jest zalogowany i jakie ma uprawnienia, żeby wiedzieć,
      * które menu ma wyświetlić.
       */
-    public void menuValidator() {
+    public static void menuValidator() {
         if (Uzytkownik.listaUzytkownikowZalogowanych.contains(Uzytkownik.zalogowany)) {
             if (Uzytkownik.zalogowany.getRola().equals(Rola.ADMINISTRATOR)) {
                 adminMenu();
@@ -27,7 +27,7 @@ public class Menu {
     /**
      * Główne menu, które jest wyświetlane niezalogowanym użytkownikom.
      */
-    public void mainMenu() {
+    public static void mainMenu() {
         System.out.println("========================** WYPOŻYCZALNIA FILMÓW - Vintage Heaven **=========================");
         System.out.println("1. Lista filmów");
         System.out.println("2. Zaloguj");
@@ -39,7 +39,7 @@ public class Menu {
     /**
      * Metoda, która odpowiada za nawigację w menu.
      */
-    public void mainMenuNav() {
+    public static void mainMenuNav() {
         int mainMenuChoice = 0;
 
         while (mainMenuChoice != 4) {
@@ -67,7 +67,7 @@ public class Menu {
     /**
      * Metoda, która wyświetla menu wyboru listy filmów do wyświetlenia.
      */
-    public void filmListMenu() {
+    public static void filmListMenu() {
         System.out.println("========================** WYPOŻYCZALNIA FILMÓW - Vintage Heaven **=========================");
         System.out.println("1. Wyświetl wszystkie filmy");
         System.out.println("2. Wyświetl dramaty");
@@ -80,7 +80,7 @@ public class Menu {
     /**
      * Metoda umożliwiająca nawigację w menu wyświetlania filmów.
      */
-    public void filmListMenuNav() {
+    public static void filmListMenuNav() {
         int filmListMenuChoice = 0;
         while (filmListMenuChoice != 5) {
             filmListMenuChoice = input.nextInt();
@@ -112,7 +112,7 @@ public class Menu {
     /**
      * Metoda wyświetla menu użytkownika.
      */
-    public void userMenu() {
+    public static void userMenu() {
         System.out.println("====================================|MENU Użytkownika|======================================");
         System.out.println("1. Lista filmów");
         System.out.println("2. Znajdź film");
@@ -125,7 +125,7 @@ public class Menu {
     /**
      * Metoda umożliwiająca nawigację w menu użytkownika.
      */
-    public void userMenuNav() {
+    public static void userMenuNav() {
         int userMenuChoice = 0;
         while (userMenuChoice != 5) {
             userMenuChoice = input.nextInt();
@@ -161,7 +161,7 @@ public class Menu {
     /**
      * Metoda pokazująca wybór w menu wyszukiwania filmów.
      */
-    public void filmSearch() {
+    public static void filmSearch() {
         System.out.println("====================================|MENU Użytkownika|======================================");
         System.out.println("1. Wyszukaj po tytule");
         System.out.println("2. Wyszukaj po reżyserze");
@@ -174,7 +174,7 @@ public class Menu {
     /**
      * Metoda odpowiadająca za nawigację w wyszukiwarce filmów.
      */
-    public void filmSearchNav() {
+    public static void filmSearchNav() {
         int filmSearchNav = 0;
         while (filmSearchNav != 5) {
             filmSearchNav = input.nextInt();
@@ -205,7 +205,7 @@ public class Menu {
     /**
      * Metoda wyświetlająca menu administratora.
      */
-    private void adminMenu() {
+    private static void adminMenu() {
         System.out.println("===================================|MENU Administratora|====================================");
         System.out.println("1. Lista użytkowników");
         System.out.println("2. Lista filmów");
@@ -219,7 +219,7 @@ public class Menu {
     /**
      * Metoda nawigacji w menu administratora.
      */
-    public void adminMenuNav() {
+    public static void adminMenuNav() {
         int adminMenuChoice = 0;
         while (adminMenuChoice != 6) {
             adminMenuChoice = input.nextInt();
@@ -255,7 +255,7 @@ public class Menu {
     /**
      * Metoda wyświetlająca menu wyboru podczas dodawania użytkowników lub filmów.
      */
-    private void addMenu() {
+    private static void addMenu() {
         System.out.println("===================================|MENU Administratora|====================================");
         System.out.println("1. Dodaj użytkownika");
         System.out.println("2. Dodaj film");
@@ -266,7 +266,7 @@ public class Menu {
     /**
      * Metoda służąca do nawigacji w menu dodawania użytkowników lub filmów.
      */
-    private void addMenuNav() {
+    private static void addMenuNav() {
         int addMenuChoice = 0;
         while (addMenuChoice != 3){
             addMenuChoice = input.nextInt();
@@ -277,8 +277,6 @@ public class Menu {
                 case 2:
                     System.out.println("Metoda dodawania nowego filmu"); // TODO: Stworzyć metodę dodawania nowego filmu.
                     Film.addFilm();
-                    addMenu();
-                    adminMenuNav();
                     break;
                 case 3:
                     menuValidator();
@@ -291,7 +289,7 @@ public class Menu {
     /**
      * Metoda wyświetlająca dłużnikow, lub zalegających z oddaniem filmów.
      */
-    private void arrearsMenu() {
+    private static void arrearsMenu() {
         System.out.println("===================================|MENU Administratora|====================================");
         System.out.println("1. Pokaż dłużników");
         System.out.println("2. Pokaż użytkowników, którzy nie oddali filmu");
@@ -303,7 +301,7 @@ public class Menu {
     /**
      * Metoda nawigacji w menu dłużników
      */
-    private void arrearsMenuNav() {
+    private static void arrearsMenuNav() {
         int arrearsMenuChoice = 0;
         while (arrearsMenuChoice !=3){
             arrearsMenuChoice = input.nextInt();

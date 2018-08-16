@@ -23,7 +23,7 @@ public class Film {
     /**
      * Metoda dodająca film do listy filmów.
     */
-    static void addFilm() {
+    public static void addFilm() {
         System.out.print("Podaj tytuł filmu: ");
         String title = Menu.input.next();
         System.out.print("Podaj imię i nazwisko reżysera: ");
@@ -62,7 +62,7 @@ public class Film {
     }
     /*
     * Metoda pytająca "czy chcesz dodać następny film?"*/
-    static void addNextFilm(){
+    public static void addNextFilm(){
         System.out.println("Chcesz dodać następny film? ");
         System.out.println("1. Tak");
         System.out.println("2. Nie");
@@ -74,7 +74,7 @@ public class Film {
                     addFilm();
                     break;
                 case 2:
-                    System.out.println("NIE WIEM JAK DODA METODE Z MENU?=+++++=====+");
+                    Menu.menuValidator(); // Tutaj dodałem metodę menuValidator. To musi się jakiś fachowiec wypowiedzieć, czy to nie będzie robiło jakiego memory leaka. Jeśli tak, to trzeba dodać jakiś sposób w validatorze żeby zerował pętle while.
                     break;
             }
         }
