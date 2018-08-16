@@ -23,7 +23,7 @@ public class Film {
     /**
      * Metoda dodająca film do listy filmów.
     */
-    static void addFilm() {
+    public static void addFilm() {
         System.out.print("Podaj tytuł filmu: ");
         String title = Menu.input.next();
         System.out.print("Podaj imię i nazwisko reżysera: ");
@@ -62,7 +62,7 @@ public class Film {
     }
     /*
     * Metoda pytająca "czy chcesz dodać następny film?"*/
-    static void addNextFilm(){
+    public static void addNextFilm(){
         System.out.println("Chcesz dodać następny film? ");
         System.out.println("1. Tak");
         System.out.println("2. Nie");
@@ -74,7 +74,7 @@ public class Film {
                     addFilm();
                     break;
                 case 2:
-                    System.out.println("NIE WIEM JAK DODA METODE Z MENU?=+++++=====+");
+                    Menu.menuValidator();
                     break;
             }
         }
@@ -83,28 +83,56 @@ public class Film {
      * Metoda do wyświetlenia wszystkich filmów.
      * */
     static void showAllFilmList() {
-        System.out.println(filmList);
+        for (Film film : filmList) {
+            System.out.println(film);
+        }
+        Menu.filmListMenuNav();
+        Menu.filmListMenuNav();
     }
 
+    public GatunekFilmu getGatunek() {
+        return gatunek;
+    }
+    
     /*
-    * Metoda do wyświetlenie filmów z gatunku Drama
+    * Metoda do wyświetlenie filmów z gatunku DRAMAT.
     * */
     static void showDramaFilmList(){
-
-        }
-
+        GatunekFilmu [] gatunek = GatunekFilmu.values();
+        for(Film film : filmList){
+            if (film.getGatunek().equals(GatunekFilmu.DRAMAT)){
+                System.out.println(film);
+                }
+            }
+        Menu.filmListMenu();
+        Menu.filmListMenuNav();
+    }
 
     /*
-     * Metoda do wyświetlenie filmów z gatunku Comedy
+     * Metoda do wyświetlenie filmów z gatunku KOMEDIA.
      * */
     static void showComedyFilmList(){
-        System.out.println(filmList);
+        GatunekFilmu [] gatunek = GatunekFilmu.values();
+        for(Film film : filmList){
+            if (film.getGatunek().equals(GatunekFilmu.KOMEDIA)){
+                System.out.println(film);
+            }
+        }
+        Menu.filmListMenu();
+        Menu.filmListMenuNav();
     }
     /*
-     * Metoda do wyświetlenie filmów z gatunku Horror
+     * Metoda do wyświetlenie filmów z gatunku HORROR.
      * */
     static void showHorrorFilmList(){
-        System.out.println(filmList);
+        GatunekFilmu [] gatunek = GatunekFilmu.values();
+        for(Film film : filmList){
+            if (film.getGatunek().equals(GatunekFilmu.HORROR)){
+                System.out.println(film);
+            }
+        }
+        Menu.filmListMenu();
+        Menu.filmListMenuNav();
     }
 
     /*
