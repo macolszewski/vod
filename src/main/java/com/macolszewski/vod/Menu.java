@@ -152,7 +152,7 @@ public class Menu {
                     userMenu();
                     break;
                 case 5:
-                    Uzytkownik.logoutUser();
+                    Uzytkownik.logoutAnyUser();
                     menuValidator();
                     break;
             }
@@ -246,7 +246,7 @@ public class Menu {
                     adminMenu();
                     break;
                 case 6:
-                    Uzytkownik.logoutAdmin();
+                    Uzytkownik.logoutAnyUser();
                     menuValidator();
                     break;
             }

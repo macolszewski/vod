@@ -117,12 +117,7 @@ public class Uzytkownik {
         }
     }
 
-    static void logoutUser() {
-        Uzytkownik.listaUzytkownikowZalogowanych.remove(Uzytkownik.zalogowany);
-        System.out.println("Zostałeś wylogowany");
-    }
-
-    static void logoutAdmin() {
+    static void logoutAnyUser() {
         Uzytkownik.listaUzytkownikowZalogowanych.remove(Uzytkownik.zalogowany);
         System.out.println("Zostałeś wylogowany");
     }
