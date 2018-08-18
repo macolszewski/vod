@@ -55,6 +55,7 @@ public class Film {
             System.out.println("Film niedostępny!");
         }
     }
+
     public void returnMovie(Uzytkownik user) {
         this.movieRentiersList.remove(user);
         ++this.quantity;
@@ -84,10 +85,11 @@ public class Film {
                 System.out.println("\t" + (i + 1) + ". " + GatunekFilmu.values()[i]);
             }
             addFilmType = Menu.input.nextInt();
-            GatunekFilmu gatunek = GatunekFilmu.values()[addFilmType-1];
+            GatunekFilmu gatunek = GatunekFilmu.values()[addFilmType - 1];
 
             Film x = new Film(title, rezyser, rokWydania, gatunek, quantity);
             addNextFilm();
+            break;
         }
     }
 
@@ -105,9 +107,6 @@ public class Film {
                 case 1:
                     addFilm();
                     break;
-                case 2:
-                    Menu.menuValidator();
-                    break;
             }
         }
     }
@@ -118,10 +117,8 @@ public class Film {
     static void showAllFilmList() {
         int counter = 0;
         for (Film film : filmList) {
-            System.out.println("\t"+(++counter)+". "+film);
+            System.out.println("\t" + (++counter) + ". " + film);
         }
-        Menu.filmListMenu();
-        Menu.filmListMenuNav();
     }
 
     public GatunekFilmu getGatunek() {
@@ -137,18 +134,15 @@ public class Film {
             System.out.println("\t" + (i + 1) + ". " + GatunekFilmu.values()[i]);
         }
         int genereNumber = Menu.input.nextInt();
-        GatunekFilmu gatunek = GatunekFilmu.values()[genereNumber-1];
+        GatunekFilmu gatunek = GatunekFilmu.values()[genereNumber - 1];
         int counter = 0;
-        System.out.println("Lista filmów z gatunku - "+gatunek+":");
+        System.out.println("Lista filmów z gatunku - " + gatunek + ":");
         for (Film film : filmList) {
             if (film.getGatunek().equals(gatunek)) {
-                System.out.println("\t"+(++counter)+". "+film);
+                System.out.println("\t" + (++counter) + ". " + film);
             }
         }
-        Menu.filmListMenu();
-        Menu.filmListMenuNav();
     }
-
 
 
     /*

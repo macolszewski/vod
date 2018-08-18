@@ -26,8 +26,8 @@ public class App
 //        System.out.println(Uzytkownik.listaUzytkownikow);
 
         Menu menu = new Menu();
-        menu.mainMenu();
-        menu.mainMenuNav();
+        menu.menuValidator();
+
 
 //        menu.showLoggedMenu();
 
