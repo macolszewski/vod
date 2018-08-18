@@ -27,6 +27,7 @@ public class App
 
         Menu menu = new Menu();
         menu.menuValidator();
+        SaveToJSON.saveToDataBase();
 
 
 //        menu.showLoggedMenu();
