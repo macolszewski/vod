@@ -1,15 +1,29 @@
 package com.macolszewski.vod;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Uzytkownik {
+    @JsonView(Views.Normal.class)
     private String login;
+
+    @JsonView(Views.Normal.class)
     private String haslo;
+
+    @JsonView(Views.Normal.class)
     private Rola rola;
+
     static List<Uzytkownik> listaUzytkownikow = new ArrayList<>();
+
     static List<Uzytkownik> listaUzytkownikowZalogowanych = new ArrayList<>();
+
     static Uzytkownik zalogowany;
+
+    Uzytkownik(){
+
+    }
 
     /*public Uzytkownik() {
         System.out.println("Podaj login: ");
@@ -88,10 +102,10 @@ public class Uzytkownik {
         }
     }
 
-    public Uzytkownik(String n, String p, Rola rola) {
-        this.login = n;
+    public Uzytkownik(String login, String haslo, Rola rola) {
+        this.login = login;
         this.rola = rola;
-        this.haslo = p;
+        this.haslo = haslo;
         listaUzytkownikow.add(this);
     }
 

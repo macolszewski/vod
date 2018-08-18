@@ -1,17 +1,34 @@
 package com.macolszewski.vod;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Film {
+    @JsonView(Views.Normal.class)
     private String title;
+
+    @JsonView(Views.Normal.class)
     private String rezyser;
+
+    @JsonView(Views.Normal.class)
     private int rokWydania;
+
+    @JsonView(Views.Normal.class)
     private GatunekFilmu gatunek;
+
+    @JsonView(Views.Normal.class)
     private int quantity;
+
+    @JsonView(Views.Normal.class)
     private List<Uzytkownik> movieRentiersList = new ArrayList<>();
+
+    @JsonView(Views.Normal.class)
     private boolean isRented;
+
+    @JsonView(Views.Normal.class)
+    private boolean availability;
 
     public List<Uzytkownik> getMovieRentiersList() {
         return movieRentiersList;
@@ -19,7 +36,11 @@ public class Film {
 
     static List<Film> filmList = new ArrayList<>();
 
-    public Film(String title, String rezyser, int rok, GatunekFilmu gatunek, int quantity) {
+    Film(){
+
+    }
+
+     Film(String title, String rezyser, int rok, GatunekFilmu gatunek, int quantity) {
         this.title = title;
         this.rezyser = rezyser;
         this.rokWydania = rok;
@@ -49,6 +70,7 @@ public class Film {
             this.setRented(true);
             --this.quantity;
         } else {
+            this.availability=false;
             System.out.println("Film niedostępny!");
         }
     }
@@ -56,8 +78,10 @@ public class Film {
     public void returnMovie(Uzytkownik user) {
         this.movieRentiersList.remove(user);
         ++this.quantity;
+        this.availability=true;
         if (this.movieRentiersList.size() == 0) {
             this.setRented(false);
+            this.availability=true;
         }
     }
 
@@ -180,8 +204,9 @@ public class Film {
                 ", rokWydania=" + rokWydania +
                 ", gatunek=" + gatunek +
                 ", quantity=" + quantity +
+                ", movieRentiersList=" + movieRentiersList +
                 ", isRented=" + isRented +
-                ", dostępność="+this.isAvailability() +
+                ", availability=" + availability +
                 '}';
     }
 }
