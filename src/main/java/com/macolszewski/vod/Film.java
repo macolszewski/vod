@@ -9,20 +9,63 @@ public class Film {
     private String rezyser;
     private int rokWydania;
     private GatunekFilmu gatunek;
-    private boolean dostepnosc = true;
+    private int quantity;
+    private List<Uzytkownik> movieRentiersList = new ArrayList<>();
+    private boolean isRented;
+
+    public List<Uzytkownik> getMovieRentiersList() {
+        return movieRentiersList;
+    }
 
     static List<Film> filmList = new ArrayList<>();
 
-    public Film(String title, String rezyser, int rok, GatunekFilmu gatunek, boolean dostepnosc) {
+    public Film(String title, String rezyser, int rok, GatunekFilmu gatunek, int quantity) {
         this.title = title;
         this.rezyser = rezyser;
         this.rokWydania = rok;
         this.gatunek = gatunek;
-        this.dostepnosc = dostepnosc;
+        this.quantity = quantity;
+        Film.filmList.add(this);
+
     }
+
+    public boolean isAvailability() {
+        return (this.quantity > 0) ? true : false;
+    }
+
+    public boolean isRented() {
+        return isRented;
+    }
+
+    public void setRented(boolean rented) {
+        isRented = rented;
+    }
+
+//    TODO: Dodać menu z opcjami wypożyczania/oddania filmu, jako parametr metody ponizej zawsze leci /
+//      "Uzytokownik.zalogowany"
+//      wywołanie na filmie wybranym z listy wyswietlonych filmow, trzeba zrobic tak zeby
+//      pobieral wybrany obiekt z listy wszsytkich filmow (po tytule?).
+
+    public void rentMovie(Uzytkownik user) {
+        if (this.isAvailability()) {
+            movieRentiersList.add(user);
+            this.setRented(true);
+            --this.quantity;
+        } else {
+            System.out.println("Film niedostępny!");
+        }
+    }
+    public void returnMovie(Uzytkownik user) {
+        this.movieRentiersList.remove(user);
+        ++this.quantity;
+        if (this.movieRentiersList.size() == 0) {
+            this.setRented(false);
+        }
+    }
+
     /**
      * Metoda dodająca film do listy filmów.
-    */
+     */
     public static void addFilm() {
         System.out.print("Podaj tytuł filmu: ");
         String title = Menu.input.next();
@@ -30,46 +73,35 @@ public class Film {
         String rezyser = Menu.input.next();
         System.out.print("Podaj rok wydania filmu: ");
         int rokWydania = Menu.input.nextInt();
+        System.out.print("Podaj liczbę sztuk: ");
+        int quantity = Menu.input.nextInt();
         System.out.println("Podaj gatunek filmu: ");
-        System.out.println("1. Dramat");
-        System.out.println("2. Komedia");
-        System.out.println("3. Horror");
         int addFilmType = 0;
 
-        while (addFilmType != 3) {
-            addFilmType = Menu.input.nextInt();
-            GatunekFilmu gatunek = null;
-            switch (addFilmType) {
-                case 1:
-                    gatunek = GatunekFilmu.DRAMAT;
-                    filmList.add(new Film(title, rezyser, rokWydania, gatunek, true));
-                    addNextFilm();
-                    break;
-                case 2:
-                    gatunek = GatunekFilmu.KOMEDIA;
-                    filmList.add(new Film(title, rezyser, rokWydania, gatunek, true));
-                    addNextFilm();
-                    break;
-                case 3:
-                    gatunek = GatunekFilmu.HORROR;
-                    filmList.add(new Film(title, rezyser, rokWydania, gatunek, true));
-                    addNextFilm();
-                    break;
-                default:
-                    System.out.println("Podaj ponownie gatunek filmu.");
+        while (true) {
+            System.out.println("Wybierz gatunek filmu:");
+            for (int i = 0; i < GatunekFilmu.values().length; i++) {
+                System.out.println("\t" + (i + 1) + ". " + GatunekFilmu.values()[i]);
             }
+            addFilmType = Menu.input.nextInt();
+            GatunekFilmu gatunek = GatunekFilmu.values()[addFilmType-1];
+
+            filmList.add(new Film(title, rezyser, rokWydania, gatunek, quantity));
+            addNextFilm();
         }
     }
+
+
     /*
-    * Metoda pytająca "czy chcesz dodać następny film?"*/
-    public static void addNextFilm(){
+     * Metoda pytająca "czy chcesz dodać następny film?"*/
+    public static void addNextFilm() {
         System.out.println("Chcesz dodać następny film? ");
         System.out.println("1. Tak");
         System.out.println("2. Nie");
         int addNextFilm = 0;
-        while (addNextFilm !=2){
+        while (addNextFilm != 2) {
             addNextFilm = Menu.input.nextInt();
-            switch (addNextFilm){
+            switch (addNextFilm) {
                 case 1:
                     addFilm();
                     break;
@@ -79,61 +111,45 @@ public class Film {
             }
         }
     }
+
     /**
      * Metoda do wyświetlenia wszystkich filmów.
-     * */
+     */
     static void showAllFilmList() {
+        int counter = 0;
         for (Film film : filmList) {
-            System.out.println(film);
+            System.out.println("\t"+(++counter)+". "+film);
         }
-        Menu.filmListMenuNav();
+        Menu.filmListMenu();
         Menu.filmListMenuNav();
     }
 
     public GatunekFilmu getGatunek() {
         return gatunek;
     }
-    
+
     /*
-    * Metoda do wyświetlenie filmów z gatunku DRAMAT.
-    * */
-    static void showDramaFilmList(){
-        GatunekFilmu [] gatunek = GatunekFilmu.values();
-        for(Film film : filmList){
-            if (film.getGatunek().equals(GatunekFilmu.DRAMAT)){
-                System.out.println(film);
-                }
+     * Metoda do wyświetlenie filmów po wybranym gatunku.
+     * */
+    static void showMoviesGenereList() {
+        System.out.println("Wybierz gatunek filmu:");
+        for (int i = 0; i < GatunekFilmu.values().length; i++) {
+            System.out.println("\t" + (i + 1) + ". " + GatunekFilmu.values()[i]);
+        }
+        int genereNumber = Menu.input.nextInt();
+        GatunekFilmu gatunek = GatunekFilmu.values()[genereNumber-1];
+        int counter = 0;
+        System.out.println("Lista filmów z gatunku - "+gatunek+":");
+        for (Film film : filmList) {
+            if (film.getGatunek().equals(gatunek)) {
+                System.out.println("\t"+(++counter)+". "+film);
             }
+        }
         Menu.filmListMenu();
         Menu.filmListMenuNav();
     }
 
-    /*
-     * Metoda do wyświetlenie filmów z gatunku KOMEDIA.
-     * */
-    static void showComedyFilmList(){
-        GatunekFilmu [] gatunek = GatunekFilmu.values();
-        for(Film film : filmList){
-            if (film.getGatunek().equals(GatunekFilmu.KOMEDIA)){
-                System.out.println(film);
-            }
-        }
-        Menu.filmListMenu();
-        Menu.filmListMenuNav();
-    }
-    /*
-     * Metoda do wyświetlenie filmów z gatunku HORROR.
-     * */
-    static void showHorrorFilmList(){
-        GatunekFilmu [] gatunek = GatunekFilmu.values();
-        for(Film film : filmList){
-            if (film.getGatunek().equals(GatunekFilmu.HORROR)){
-                System.out.println(film);
-            }
-        }
-        Menu.filmListMenu();
-        Menu.filmListMenuNav();
-    }
+
 
     /*
      * Metoda do wyswietlenia filmów dostępnych do wypożyczenia.
@@ -143,8 +159,8 @@ public class Film {
     }
 
     /*
-    * Metoda do wyswietlenia filmów wypożyczonych.
-    * */
+     * Metoda do wyswietlenia filmów wypożyczonych.
+     * */
     static void showRentFilmList() {
         System.out.println(filmList);
     }
@@ -156,7 +172,8 @@ public class Film {
                 ", rezyser='" + rezyser + '\'' +
                 ", rokWydania=" + rokWydania +
                 ", gatunek=" + gatunek +
-                ", dostepnosc=" + dostepnosc +
+                ", quantity=" + quantity +
+                ", isRented=" + isRented +
                 '}';
     }
 }

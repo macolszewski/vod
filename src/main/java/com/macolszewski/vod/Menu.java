@@ -59,6 +59,8 @@ public class Menu {
                     break;
                 case 4:
                     System.out.println("Do widzenia. Zapraszamy ponownie.");
+                    System.gc();
+                    System.exit(0);
                     break;
             }
         }
@@ -70,10 +72,8 @@ public class Menu {
     public static void filmListMenu() {
         System.out.println("========================** WYPOŻYCZALNIA FILMÓW - Vintage Heaven **=========================");
         System.out.println("1. Wyświetl wszystkie filmy");
-        System.out.println("2. Wyświetl dramaty");
-        System.out.println("3. Wyświetl komedie");
-        System.out.println("4. Wyświetl horrory");
-        System.out.println("5. Wróć");
+        System.out.println("2. Wyświetl po wybranym gatunku");
+        System.out.println("3. Wróć");
         System.out.println("============================================================================================");
     }
 
@@ -82,7 +82,7 @@ public class Menu {
      */
     public static void filmListMenuNav() {
         int filmListMenuChoice = 0;
-        while (filmListMenuChoice != 5) {
+        while (filmListMenuChoice != 3) {
             filmListMenuChoice = input.nextInt();
 
             switch (filmListMenuChoice) {
@@ -91,18 +91,10 @@ public class Menu {
                     Film.showAllFilmList();
                     break;
                 case 2:
-                    System.out.println("Lista filmów z gatunku Drama: ");
-                    Film.showDramaFilmList();
+                    System.out.println("Lista filmów z wybranego gatunku: ");
+                    Film.showMoviesGenereList();
                     break;
                 case 3:
-                    System.out.println("Lista filmów z gatunku Komedia: ");
-                    Film.showComedyFilmList();
-                    break;
-                case 4:
-                    System.out.println("Lista filmów z gatunku Horror: ");
-                    Film.showHorrorFilmList();
-                    break;
-                case 5:
                     menuValidator();
                     break;
             }
