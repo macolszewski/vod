@@ -29,6 +29,7 @@ public class Film {
 
     }
 
+    //    Operator trójkowy:
     public boolean isAvailability() {
         return (this.quantity > 0) ? true : false;
     }
@@ -41,10 +42,6 @@ public class Film {
         isRented = rented;
     }
 
-//    TODO: Dodać menu z opcjami wypożyczania/oddania filmu, jako parametr metody ponizej zawsze leci /
-//      "Uzytokownik.zalogowany"
-//      wywołanie na filmie wybranym z listy wyswietlonych filmow, trzeba zrobic tak zeby
-//      pobieral wybrany obiekt z listy wszsytkich filmow (po tytule?).
 
     public void rentMovie(Uzytkownik user) {
         if (this.isAvailability()) {
@@ -149,8 +146,14 @@ public class Film {
      * Metoda do wyswietlenia filmów dostępnych do wypożyczenia.
      * */
     static void showavailableFilmList() {
-        System.out.println(filmList);
+        int counter = 0;
+        for (Film film : filmList) {
+            if (film.isAvailability()) {
+                System.out.println("\t" + (++counter) + ". " + " ID: " + Film.filmList.indexOf(film) + " ->" + film);
+            }
+        }
     }
+
 
     /*
      * Metoda do wyswietlenia filmów wypożyczonych.
@@ -168,6 +171,7 @@ public class Film {
                 ", gatunek=" + gatunek +
                 ", quantity=" + quantity +
                 ", isRented=" + isRented +
+                ", dostępność="+this.isAvailability() +
                 '}';
     }
 }

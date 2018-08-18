@@ -31,7 +31,7 @@ public class Menu {
      */
     public static void mainMenu() {
         System.out.println("========================** WYPOŻYCZALNIA FILMÓW - Vintage Heaven **=========================");
-        System.out.println("1. Lista filmów");
+        System.out.println("1. Filmy");
         System.out.println("2. Zaloguj");
         System.out.println("3. Utwórz konto");
         System.out.println("4. Wyjdź");
@@ -109,11 +109,12 @@ public class Menu {
      */
     public static void userMenu() {
         System.out.println("====================================|MENU Użytkownika|======================================");
-        System.out.println("1. Lista filmów");
+        System.out.println("1. Filmy");
         System.out.println("2. Znajdź film");
-        System.out.println("3. Wypożyczone filmy");
-        System.out.println("4. Płatności i kary");
-        System.out.println("5. Wyloguj");
+        System.out.println("3. Wypożycz filmy");
+        System.out.println("4. Wypożyczone filmy");
+        System.out.println("5. Płatności i kary");
+        System.out.println("6. Wyloguj");
         System.out.println("============================================================================================");
     }
 
@@ -122,7 +123,7 @@ public class Menu {
      */
     public static void userMenuNav() {
         int userMenuChoice = 0;
-        while (userMenuChoice != 5) {
+        while (userMenuChoice != 6) {
             userMenu();
             userMenuChoice = input.nextInt();
 
@@ -131,18 +132,25 @@ public class Menu {
                     filmListMenuNav();
                     break;
                 case 2:
-                    filmSearchNav();
+                    filmSearchNav(); // Metoda wyszukiwania filmów.
                     break;
                 case 3:
+                    System.out.println("Metoda do wypożyczania filmów.");
+                    Film.showavailableFilmList();
+                    System.out.println("Podaj ID filmu: ");
+                    int id = Menu.input.nextInt();
+                    Film.filmList.get(id).rentMovie(Uzytkownik.zalogowany);
+                    break;
+                case 4:
 //                  TODO: Metoda, która będzie wyświetlała wszystkie filmy, które zalogowany użytkownik kiedykolwiek wypożyczył.
 //                  TODO: Najlepiej, żeby motoda wyświetlała najpierw wypożyczone aktualnie (nieoddane) filmy, a później filmy wypożyczone i oddane.
                     System.out.println("Tu będzie się pokazywała lista wypożyczonych filmów.");
                     break;
-                case 4:
+                case 5:
 //                  TODO: Metoda, która będzie wyświetlała kwotę do zapłacenia za aktualnie wypożyczone filmy oraz ewentualne kary.
                     System.out.println("Tu będzie się wyświetlała kwota do zapłacenia z podziałem na wypożyczone filmy i kary.");
                     break;
-                case 5:
+                case 6:
                     Uzytkownik.logoutAnyUser();
                     
                     break;
@@ -169,6 +177,7 @@ public class Menu {
     public static void filmSearchNav() {
         int filmSearchNav = 0;
         while (filmSearchNav != 5) {
+            filmListMenuNav();
             filmSearch();
             filmSearchNav = input.nextInt();
             switch (filmSearchNav) {
