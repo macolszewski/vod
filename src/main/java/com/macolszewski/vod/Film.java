@@ -154,6 +154,16 @@ public class Film {
         }
     }
 
+    static void showRentedmovies (Uzytkownik user){
+        int counter = 0;
+        for (Film film : filmList) {
+            if (film.getMovieRentiersList().contains(user)) {
+                System.out.println("\t" + (++counter) + ". " + " ID: " + Film.filmList.indexOf(film) + " ->" + film);
+            }
+        }
+    }
+
+
 
     /*
      * Metoda do wyswietlenia filmów wypożyczonych.
