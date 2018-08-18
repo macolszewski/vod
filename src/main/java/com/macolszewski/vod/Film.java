@@ -86,7 +86,7 @@ public class Film {
             addFilmType = Menu.input.nextInt();
             GatunekFilmu gatunek = GatunekFilmu.values()[addFilmType-1];
 
-            filmList.add(new Film(title, rezyser, rokWydania, gatunek, quantity));
+            Film x = new Film(title, rezyser, rokWydania, gatunek, quantity);
             addNextFilm();
         }
     }

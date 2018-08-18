@@ -28,7 +28,7 @@ public class Menu {
      * Główne menu, które jest wyświetlane niezalogowanym użytkownikom.
      */
     public static void mainMenu() {
-        System.out.println("========================** WYPOŻYCZALNIA FILMÓW - Vintage Heaven **=========================");
+        System.out.println("========================** WYPOŻYC2ZALNIA FILMÓW - Vintage Heaven **=========================");
         System.out.println("1. Lista filmów");
         System.out.println("2. Zaloguj");
         System.out.println("3. Utwórz konto");
