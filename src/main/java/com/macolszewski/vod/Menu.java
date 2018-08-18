@@ -124,7 +124,7 @@ public class Menu {
      */
     public static void userMenuNav() {
         int userMenuChoice = 0;
-        while (userMenuChoice != 6) {
+        while (userMenuChoice != 8) {
             userMenu();
             userMenuChoice = input.nextInt();
 
@@ -160,7 +160,7 @@ public class Menu {
                     break;
                 case 7:
                     Uzytkownik.logoutAnyUser();
-                    
+                    userMenuChoice=8;
                     break;
             }
         }
