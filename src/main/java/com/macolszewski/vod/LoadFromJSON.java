@@ -11,7 +11,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class LoadFromJSON <T> {
+public class LoadFromJSON {
 
     static void loadFromDataBase(){
         LoadFromJSON obj = new LoadFromJSON();

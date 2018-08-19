@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Menu {
     static int appHandler = 0;
-    static Scanner input = new Scanner(System.in);
+    static Scanner input = new Scanner(System.in).useDelimiter("\n");
 
     /**
      * Metoda, która sprawdza, czy użytkownik jest zalogowany i jakie ma uprawnienia, żeby wiedzieć,
