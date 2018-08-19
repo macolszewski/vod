@@ -22,7 +22,7 @@ public class Film {
     private int quantity;
 
     @JsonView(Views.Normal.class)
-    private List<Uzytkownik> movieRentiersList = new ArrayList<>();
+    private List<Integer> movieRentiersList = new ArrayList<>();
 
     @JsonView(Views.Normal.class)
     private boolean isRented;
@@ -30,17 +30,19 @@ public class Film {
     @JsonView(Views.Normal.class)
     private boolean availability;
 
-    public List<Uzytkownik> getMovieRentiersList() {
+    public List<Integer> getMovieRentiersList() {
         return movieRentiersList;
     }
 
     static List<Film> filmList = new ArrayList<>();
 
-    Film(){
+    static int counter = 0;
+
+    Film() {
 
     }
 
-     Film(String title, String rezyser, int rok, GatunekFilmu gatunek, int quantity) {
+    Film(String title, String rezyser, int rok, GatunekFilmu gatunek, int quantity) {
         this.title = title;
         this.rezyser = rezyser;
         this.rokWydania = rok;
@@ -66,22 +68,25 @@ public class Film {
 
     public void rentMovie(Uzytkownik user) {
         if (this.isAvailability()) {
-            movieRentiersList.add(user);
+            movieRentiersList.add(user.getId());
             this.setRented(true);
             --this.quantity;
         } else {
-            this.availability=false;
+            this.availability = false;
             System.out.println("Film niedostępny!");
         }
     }
 
     public void returnMovie(Uzytkownik user) {
-        this.movieRentiersList.remove(user);
-        ++this.quantity;
-        this.availability=true;
-        if (this.movieRentiersList.size() == 0) {
-            this.setRented(false);
-            this.availability=true;
+        if (this.movieRentiersList.contains(user.getId())) {
+            this.movieRentiersList.remove(this.movieRentiersList.indexOf(user.getId()));
+            ++this.quantity;
+            this.availability = true;
+            if (this.movieRentiersList.size() == 0) {
+                this.setRented(false);
+            }
+        } else {
+            System.out.println("Obecnie nie wypożyczasz żadnego filmu!");
         }
     }
 
@@ -136,7 +141,7 @@ public class Film {
      * Metoda do wyświetlenia wszystkich filmów.
      */
     static void showAllFilmList() {
-        int counter = 0;
+        counter = 0;
         for (Film film : filmList) {
             System.out.println("\t" + (++counter) + ". " + film);
         }
@@ -156,7 +161,7 @@ public class Film {
         }
         int genereNumber = Menu.input.nextInt();
         GatunekFilmu gatunek = GatunekFilmu.values()[genereNumber - 1];
-        int counter = 0;
+        counter = 0;
         System.out.println("Lista filmów z gatunku - " + gatunek + ":");
         for (Film film : filmList) {
             if (film.getGatunek().equals(gatunek)) {
@@ -170,7 +175,7 @@ public class Film {
      * Metoda do wyswietlenia filmów dostępnych do wypożyczenia.
      * */
     static void showavailableFilmList() {
-        int counter = 0;
+        counter = 0;
         for (Film film : filmList) {
             if (film.isAvailability()) {
                 System.out.println("\t" + (++counter) + ". " + " ID: " + Film.filmList.indexOf(film) + " ->" + film);
@@ -178,15 +183,13 @@ public class Film {
         }
     }
 
-    static void showRentedmovies (Uzytkownik user){
-        int counter = 0;
+    static void showRentedmovies(Uzytkownik user) {
         for (Film film : filmList) {
-            if (film.getMovieRentiersList().contains(user)) {
-                System.out.println("\t" + (++counter) + ". " + " ID: " + Film.filmList.indexOf(film) + " ->" + film);
+            if (film.getMovieRentiersList().contains(user.getId())) {
+                System.out.println("\t" + (++Film.counter) + ". " + " ID: " + Film.filmList.indexOf(film) + " ->" + film);
             }
         }
     }
-
 
 
     /*

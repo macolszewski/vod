@@ -136,18 +136,21 @@ public class Menu {
                     filmSearchNav(); // Metoda wyszukiwania filmów.
                     break;
                 case 3:
-                    System.out.println("Metoda do wypożyczania filmów.");
                     Film.showavailableFilmList();
                     System.out.println("Podaj ID filmu: ");
                     int id = Menu.input.nextInt();
                     Film.filmList.get(id).rentMovie(Uzytkownik.zalogowany);
                     break;
                 case 4:
-                    System.out.println("Metoda do oddawania filmów.");
                     Film.showRentedmovies(Uzytkownik.zalogowany);
-                    System.out.println("Podaj ID filmu: ");
-                    int id2 = Menu.input.nextInt();
-                    Film.filmList.get(id2).returnMovie(Uzytkownik.zalogowany);
+                    if (Film.counter>0) {
+                        System.out.println("Podaj ID filmu: ");
+                        int id2 = Menu.input.nextInt();
+                        Film.filmList.get(id2).returnMovie(Uzytkownik.zalogowany);
+                        Film.counter=0;
+                    } else {
+                        System.out.println("Nie wypożyczasz żadnego filmu!");
+                    }
                     break;
                 case 5:
 //                  TODO: Metoda, która będzie wyświetlała wszystkie filmy, które zalogowany użytkownik kiedykolwiek wypożyczył.
