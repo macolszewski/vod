@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Uzytkownik {
     @JsonView(Views.Normal.class)
@@ -14,6 +15,9 @@ public class Uzytkownik {
 
     @JsonView(Views.Normal.class)
     private Rola rola;
+
+    @JsonView(Views.Normal.class)
+    private int id;
 
     static List<Uzytkownik> listaUzytkownikow = new ArrayList<>();
 
@@ -72,11 +76,16 @@ public class Uzytkownik {
         }
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     static void adminAddUser () {
         System.out.println("Podaj login: ");
         String login = Menu.input.next();
         for (Uzytkownik user : listaUzytkownikow) {
             if (user.getLogin().equals(login)) {
+
                 System.out.println("Login zajęty. Spróbuj z innym.");
                 adminAddUser();
                 return;
@@ -106,11 +115,16 @@ public class Uzytkownik {
         this.login = login;
         this.rola = rola;
         this.haslo = haslo;
+        this.id = 1+(new Random().nextInt(10000));
         listaUzytkownikow.add(this);
     }
 
     public Rola getRola() {
         return rola;
+    }
+
+    public int getId() {
+        return id;
     }
 
     static void logowanie() {
